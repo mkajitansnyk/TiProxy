@@ -9,7 +9,7 @@ ADD . /proxy
 RUN export GOPROXY=${GOPROXY} && cd /proxy && go mod download -x
 RUN export VERSION=${VERSION} && export COMMIT=${COMMIT} && export GOPROXY=${GOPROXY} && cd /proxy && make cmd
 
-FROM alpine:latest
+FROM alpine:3.18.3
 
 COPY --from=builder /proxy/bin/* /bin/
 COPY --from=builder /proxy/conf/* /etc/proxy/
